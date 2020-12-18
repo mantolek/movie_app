@@ -10,12 +10,12 @@ app.use(cookieParser());
 
 // Connect routes
 const User = require('./routes/user');
-// const Comment = require('./routes/comment');
+const Comment = require('./routes/comment');
 // const Like = require('./routes/Like');
 // const Favorite = require('./routes/Favorite');
 
 app.use('/user', User);
-// app.use('/comment', Comment);
+app.use('/comment', Comment);
 // app.use('/like', Like);
 // app.use('/favorite', Favorite);
 
