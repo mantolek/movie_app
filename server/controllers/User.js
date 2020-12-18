@@ -1,5 +1,20 @@
-const router = require('express').Router();
 const User = require('../models/User');
+
+/**
+ * Auth
+ * GET
+ */
+exports.auth = (req, res) => {
+  res.status(200).json({
+    _id: req.user._id,
+    isAdmin: req.user.role !== 0,
+    success: true,
+    email: req.user.email,
+    name: req.user.name,
+    lastname: req.user.lastname,
+    role: req.user.role,
+  });
+};
 
 /**
  * Register
