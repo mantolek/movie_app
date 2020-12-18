@@ -70,3 +70,23 @@ exports.login = async (req, res) => {
    * });
    */
 };
+
+/**
+ * Logout
+ * POST
+ */
+exports.logout = async (req, res) => {
+  try {
+    // User exist
+    let updated = await User.findOneAndUpdate(
+      { _id: req.user._id },
+      { token: '' }
+    );
+    if (!updated) return res.status(400).json({ msg: 'Cannot logout' });
+
+    // Logged out
+    res.status(200).send({ success: false });
+  } catch (err) {
+    return res.status(400).json({ msg: err.message });
+  }
+};
