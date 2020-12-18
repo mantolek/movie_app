@@ -12,11 +12,11 @@ app.use(cookieParser());
 const User = require('./routes/user');
 const Comment = require('./routes/comment');
 const Like = require('./routes/Like');
-// const Favorite = require('./routes/Favorite');
+const Favorite = require('./routes/Favorite');
 
 app.use('/user', User);
 app.use('/comment', Comment);
 app.use('/like', Like);
-// app.use('/favorite', Favorite);
+app.use('/favorite', Favorite);
 
 module.exports = app;
