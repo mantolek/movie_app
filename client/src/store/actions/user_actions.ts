@@ -4,6 +4,7 @@ import {
   REGISTER_USER,
   AUTH_USER,
   LOGIN_USER,
+  LOGOUT_USER,
 } from '../../store/actions/types';
 
 export const register = (dataToSubmit: any) => async (dispatch: Function) => {
@@ -51,4 +52,23 @@ export const auth = () => async (dispatch: Function) => {
   } catch (err) {
     console.log(err);
   }
+};
+
+export const logout = () => async (dispatch: Function) => {
+  const token = localStorage.getItem('userLoggedIn');
+  const config = {
+    headers: {
+      'Content-type': 'application/json',
+      'x-auth-token': token || '',
+    },
+  };
+  console.log(config);
+  const request = await axios.get(`${USER_SERVER}/logout`, config);
+
+  localStorage.removeItem('userLoggedIn');
+
+  dispatch({
+    type: LOGOUT_USER,
+    payload: request.data,
+  });
 };

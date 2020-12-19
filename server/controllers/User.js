@@ -98,8 +98,9 @@ exports.logout = async (req, res) => {
       { _id: req.user._id },
       { token: '' }
     );
+    console.log('logout 1')
     if (!updated) return res.status(400).json({ msg: 'Cannot logout' });
-
+      console.log('logout 2')
     // Logged out
     res.status(200).send({ loginSuccess: false });
   } catch (err) {

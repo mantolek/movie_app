@@ -1,6 +1,11 @@
+import { RouteComponentProps } from 'react-router-dom';
+export interface MenuMobileProps extends RouteComponentProps {}
+export interface MenuDesktopProps extends RouteComponentProps {}
+
 export interface Appstate {
   user: {
-    a: number;
+    loginSuccess: boolean;
+    auth: boolean;
   };
 }
 
@@ -27,7 +32,7 @@ export interface HomeMovieInterface {
 }
 
 export interface HomeMainMovieInterface {
-//   mainMovieImage: string;
+  //   mainMovieImage: string;
   original_title: string;
   overview: string;
   backdrop_path: string | null;

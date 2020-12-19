@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { register } from '../store/actions/user_actions';
-import { RegisterProp } from '../types/interfaces/index';
+import { register } from '../../store/actions/user_actions';
+import { RegisterProp } from '../../types/interfaces/index';
 
 const Register: React.FC<RegisterProp> = (props) => {
   const dispatch = useDispatch();

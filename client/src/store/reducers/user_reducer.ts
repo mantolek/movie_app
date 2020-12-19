@@ -1,4 +1,4 @@
-import { REGISTER_USER, AUTH_USER, LOGIN_USER } from '../actions/types';
+import { REGISTER_USER, AUTH_USER, LOGIN_USER, LOGOUT_USER } from '../actions/types';
 
 const initialState = {
   success: false,
@@ -8,7 +8,7 @@ const initialState = {
   role: '',
   isAdmin: '',
   id: '',
-  token: ''
+  token: '',
 };
 
 export default function user_reducer(state = initialState, action: any) {
@@ -28,6 +28,8 @@ export default function user_reducer(state = initialState, action: any) {
         isAdmin: payload.isAdmin,
         id: payload._id,
       };
+    case LOGOUT_USER:
+      return { ...state, loginSuccess: payload.loginSuccess };
     default:
       return state;
   }
