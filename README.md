@@ -7,7 +7,7 @@ Tech: React, Node, MongoDB, TS.
 
 Link to Presentation project nr 2 created using class components.
 Tech: React, Node, SQL, TS.
-<soon>
+- soon
 
 ### What should be changed
 
