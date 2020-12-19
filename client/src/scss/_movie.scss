@@ -1,0 +1,231 @@
+.movie {
+    padding: 2rem 0;
+  
+    &__mainImage__wrapper {
+      display: flex;
+      flex-direction: column-reverse;
+  
+      .mainImage {
+        height: auto;
+        width: 100%;
+        margin: 0 auto;
+        border-radius: 0.2rem;
+      }
+  
+      .mainImage-info {
+        padding: 0.5rem 0;
+        text-align: left;
+        margin: 1rem;
+        padding: 1rem;
+        border-radius: 0.2rem;
+        max-width: 30rem;
+  
+        &__wrapper {
+          width: 90%;
+          margin: 0 auto;
+          h3 {
+            font-size: 2rem;
+          }
+  
+          p {
+            line-height: 1.3rem;
+          }
+        }
+      }
+    }
+  
+    &__info {
+      .interaction {
+        margin: 2rem;
+  
+        .favoriteBtn {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+  
+          svg {
+            cursor: pointer;
+            margin-left: 0.5rem;
+            font-size: 1.3rem;
+          }
+        }
+  
+        .likeDisLike {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          margin-bottom: 0.5rem;
+  
+          svg {
+            cursor: pointer;
+            font-size: 1.3rem;
+          }
+        }
+      }
+  
+      .movieInfo {
+        padding-bottom: 2rem;
+        background-color: #ffffff;
+        width: 15rem;
+        color: #8189c1;
+        padding: 1rem;
+        border-radius: 0.2rem;
+        margin: 3rem auto;
+  
+        &__element {
+          display: flex;
+          transition: 0.2s all;
+          justify-content: space-between;
+          align-items: center;
+          border-radius: 0.2rem;
+          height: 2.5rem;
+          padding: 0.5rem;
+          line-height: 1.1rem;
+  
+          span {
+            min-width: 8rem;
+          }
+  
+          p {
+            text-align: right;
+          }
+  
+          &:hover {
+            color: #241c3c;
+            background-color: rgb(211, 211, 211);
+          }
+        }
+      }
+  
+      .actiorViewBtn {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 2rem;
+      }
+  
+      .casts {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 1rem;
+        padding-bottom: 2rem;
+  
+        .gridCards {
+          position: relative;
+  
+          img {
+            width: 100%;
+            border-radius: 0.2rem;
+          }
+          p {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2rem;
+            background-color: #fff;
+            color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+      }
+  
+      .comments {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+  
+        &__title {
+          margin: .5rem 0;
+          font-size: 1.3rem;
+  
+          span {
+            font-weight: 600;
+            margin-right: 0.5rem;
+          }
+        }
+  
+        .comment {
+          display: flex;
+          background-color: #ffffff;
+          justify-content: flex-start;
+          align-items: center;
+          color: rgb(0, 0, 0);
+          padding: 0.5rem;
+          width: 100%;
+          margin: 0.5rem 0;
+          border: 1px solid #333;
+          padding: .5rem;
+          border-radius: .2rem;
+  
+          &__content {
+            display: flex;
+            flex-direction: column;
+  
+            span {
+              margin-right: 0.5rem;
+            }
+          }
+        }
+  
+        &__initial {
+          text-align: center;
+          font-size: 1.3rem;
+        }
+  
+        &__form {
+          margin-top: 1rem;
+        }
+      }
+    }
+  }
+  
+  @media only screen and (min-width: 425px) {
+    .movie {
+      &__info {
+        .casts {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+    }
+  }
+  
+  @media only screen and (min-width: 600px) {
+    .movie {
+      &__mainImage__wrapper {
+        flex-direction: row;
+  
+        .mainImage {
+          width: 50%;
+        }
+      }
+  
+      &__info {
+        .casts {
+          grid-template-columns: repeat(6, 1fr);
+        }
+  
+        .movieInfo {
+          width: 20rem;
+        }
+      }
+    }
+  }
+  
+  @media only screen and (min-width: 900px) {
+    .movie {
+      &__info {
+        .casts {
+          grid-template-columns: repeat(8, 1fr);
+        }
+      }
+    }
+  }
+  

@@ -23,7 +23,7 @@ exports.saveComment = async (req, res) => {
     // Save comment
     const newComment = await comment.save();
     if (!newComment)
-      res.status(400).json({ msg: 'Something went wrong with favorite.' });
+      res.status(400).json({ msg: 'Something went wrong with comment.' });
 
     const populated = await Comment.find({ _id: comment._id }).populate(
       'author'
@@ -39,7 +39,7 @@ exports.saveComment = async (req, res) => {
  * Get comment
  * POST
  */
-exports.getComment = async (req, res) => {
+exports.getComments = async (req, res) => {
   const { movieID } = req.body;
 
   try {

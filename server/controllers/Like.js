@@ -1,5 +1,5 @@
-const { Like } = require('../models/Like');
-const { Dislike } = require('../models/Dislike');
+const Like = require('../models/Like');
+const Dislike = require('../models/Dislike');
 
 /**
  * Get likes
@@ -58,12 +58,22 @@ exports.getDislikes = async (req, res) => {
 exports.upLike = async (req, res) => {
   let variable = {};
   if (req.body.movieID) {
-    variable = { movieId: req.body.movieID, userId: req.user._id };
+    variable = { movieID: req.body.movieID, userID: req.user._id };
   } else {
-    variable = { commentId: req.body.commentID, userId: req.user._id };
+    variable = { commentID: req.body.commentID, userID: req.user._id };
   }
-
+  console.log(req.body)
   try {
+    const like = await new Like(variable);
+    if (!like)
+      return res.status(400).json({ msg: 'Something went wrong with like.' });
+
+    const newLike = await like.save();
+    if (!newLike)
+      return res
+        .status(400)
+        .json({ msg: 'Something went wrong with saving new like.' });
+
     // If previously disliked. Undislike.
     const disLikeExist = await Dislike.find(variable);
     if (disLikeExist.length > 0) {
@@ -75,17 +85,7 @@ exports.upLike = async (req, res) => {
             success: false,
             msg: 'Something went wrong with undisliking.',
           });
-    }
-
-    const like = await new Like(variable);
-    if (!like)
-      return res.status(400).json({ msg: 'Something went wrong with like.' });
-
-    const newLike = await like.save();
-    if (!newLike)
-      return res
-        .status(400)
-        .json({ msg: 'Something went wrong with saving new like.' });
+    }   
 
     return res.status(200).json({ success: true });
   } catch (err) {
@@ -99,7 +99,7 @@ exports.upLike = async (req, res) => {
  */
 exports.unLike = async (req, res) => {
   let variable = {};
-  if (req.body.movieId) {
+  if (req.body.movieID) {
     variable = { movieID: req.body.movieID, userID: req.user._id };
   } else {
     variable = { commentID: req.body.commentID, userID: req.user._id };
@@ -126,10 +126,10 @@ exports.unLike = async (req, res) => {
  */
 exports.upDisLike = async (req, res) => {
   let variable = {};
-  if (req.body.movieId) {
-    variable = { movieId: req.body.movieId, userId: req.user._id };
+  if (req.body.movieID) {
+    variable = { movieID: req.body.movieID, userID: req.user._id };
   } else {
-    variable = { commentId: req.body.commentId, userId: req.user._id };
+    variable = { commentID: req.body.commentID, userID: req.user._id };
   }
 
   try {
@@ -165,10 +165,10 @@ exports.upDisLike = async (req, res) => {
  */
 exports.unDisLike = async (req, res) => {
   let variable = {};
-  if (req.body.movieId) {
-    variable = { movieId: req.body.movieId, userId: req.user._id };
+  if (req.body.movieID) {
+    variable = { movieID: req.body.movieID, userID: req.user._id };
   } else {
-    variable = { commentId: req.body.commentId, userId: req.user._id };
+    variable = { commentID: req.body.commentID, userID: req.user._id };
   }
 
   try {

@@ -3,11 +3,12 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './App.scss';
 import { Appstate, AppProp } from './types/interfaces/index';
-import Home from './pages/Home/Home'
-import Login from './pages/Login/Login'
-import Register from './pages/Register/Register'
-import Navbar from './pages/Navbar/Navbar'
-import { auth } from './store/actions/user_actions'
+import Home from './pages/Home/Home';
+import Login from './pages/Login/Login';
+import Register from './pages/Register/Register';
+import Navbar from './pages/Navbar/Navbar';
+import Movie from './pages/Movie/Movie'
+import { auth } from './store/actions/user_actions';
 
 const PrivateRoute = ({ component: Component, ...rest }: any) => (
   <Route
@@ -28,15 +29,11 @@ const PrivateRoute = ({ component: Component, ...rest }: any) => (
 );
 
 const App: React.FC<AppProp> = () => {
-  const dispatch = useDispatch()
-  const user = useSelector((state: Appstate) => state.user);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(auth())
-    console.log('zpravdzam')
+    dispatch(auth());
   }, [dispatch]);
-
-  // const loggedIn = user.loginSuccess || !!localStorage.getItem('userLoggedIn');
 
   return (
     <div>
@@ -45,6 +42,7 @@ const App: React.FC<AppProp> = () => {
         <PrivateRoute exact path='/' component={Home} />
         <Route exact path='/login' component={Login} />
         <Route exact path='/register' component={Register} />
+        <PrivateRoute exact path='/movie/:id' component={Movie} />
       </Switch>
     </div>
   );

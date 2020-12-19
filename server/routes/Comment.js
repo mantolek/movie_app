@@ -3,6 +3,6 @@ const comment = require('../controllers/comment');
 const auth = require('../middleware/auth');
 
 router.post('/saveComment', auth, comment.saveComment);
-router.post('/getComment', auth, comment.getComment);
+router.post('/getComments', auth, comment.getComments);
 
 module.exports = router;

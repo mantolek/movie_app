@@ -1,5 +1,8 @@
 // SERVER ROUTES
 export const USER_SERVER = 'http://localhost:5000/user';
+export const FAVORITE_SERVER = 'http://localhost:5000/favorite';
+export const LIKE_SERVER = 'http://localhost:5000/like';
+export const COMMENT_SERVER = 'http://localhost:5000/comment';
 
 // API
 export const API_URL = 'https://api.themoviedb.org/3/';
