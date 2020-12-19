@@ -36,7 +36,7 @@ const Login: React.FC<LoginProp> = (props) => {
       setFormData({ email: '', password: '' });
       props.history.push('/');
     } catch (err) {
-      console.log(err.response.data.err || err.message);
+      console.log(err);
     }
   };
 

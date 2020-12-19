@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import './App.scss';
-import { Appstate, AppProp } from './types/interfaces/index';
+import { AppProp } from './types/interfaces/index';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Navbar from './pages/Navbar/Navbar';
-import Movie from './pages/Movie/Movie'
+import Movie from './pages/Movie/Movie';
+import Favorite from './pages/Favorite/Favorite';
 import { auth } from './store/actions/user_actions';
 
 const PrivateRoute = ({ component: Component, ...rest }: any) => (
@@ -43,6 +44,7 @@ const App: React.FC<AppProp> = () => {
         <Route exact path='/login' component={Login} />
         <Route exact path='/register' component={Register} />
         <PrivateRoute exact path='/movie/:id' component={Movie} />
+        <PrivateRoute exact path='/favorite' component={Favorite} />
       </Switch>
     </div>
   );

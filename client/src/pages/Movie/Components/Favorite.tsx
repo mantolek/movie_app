@@ -27,7 +27,7 @@ const Favorite: React.FC<FavoriteProps> = ({ movieID, movieInfo }) => {
           setFavorited(!favorited);
         }
       } catch (err) {
-        console.log(err.response.data.err || err.message);
+        console.log(err);
       }
     } else {
       // when we are not subscribed yet
@@ -44,7 +44,7 @@ const Favorite: React.FC<FavoriteProps> = ({ movieID, movieInfo }) => {
           setFavorited(!favorited);
         }
       } catch (err) {
-        console.log(err.response.data.err || err.message);
+        console.log(err);
       }
     }
   };
@@ -56,7 +56,7 @@ const Favorite: React.FC<FavoriteProps> = ({ movieID, movieInfo }) => {
         setFavorited(data.success);
       }
     } catch (err) {
-        console.log(err.response.data.err || err.message);
+        console.log(err);
     }
   }, [movieID]);
 

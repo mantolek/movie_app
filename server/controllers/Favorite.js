@@ -1,26 +1,6 @@
 const Favorite = require('../models/Favorite');
 
 /**
- * GET NUMBER OF PEOPLE SUBSCRIBED TO THE MOVIE
- * POST
- */
-// exports.favoriteNumber = async (req, res) => {
-//   try {
-//     const favorite = await Favorite.find({ movieID: req.body.movieID });
-//     if (!favorite)
-//       return res
-//         .status(400)
-//         .json({ msg: 'Something went wrong with favorite.' });
-
-//     return res
-//       .status(200)
-//       .json({ success: true, subscribeNumber: favorite.length });
-//   } catch (err) {
-//     return res.status(400).json({ msg: err.message });
-//   }
-// };
-
-/**
  * Check if movie is user favorited
  * POST
  */

@@ -28,7 +28,7 @@ const Home: React.FC = () => {
         setCurrentPage(data.page);
         setLoading(false);
       } catch (err) {
-        console.log(err.response.data.err || err.response.data.status_message);
+        console.log(err);
       }
     },
     [mainMovieImage]

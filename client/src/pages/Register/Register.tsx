@@ -36,7 +36,7 @@ const Register: React.FC<RegisterProp> = (props) => {
 
       props.history.push('/login');
     } catch (err) {
-      console.log(err.response.data.err || err.message);
+      console.log(err);
     }
   };
 

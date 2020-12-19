@@ -15,7 +15,7 @@ const Comments: React.FC<CommentsProps> = ({
 }) => {
   const user = useSelector((state: CommentsInterface) => state.user);
   const [comment, setComment] = useState('');
-    console.log(commentLists,'commentLists')
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setComment(e.currentTarget.value);
   };

@@ -50,10 +50,6 @@ export interface MainImageProps {
   text: string;
 }
 
-
-
-
-
 export interface MovieDetailPageProps extends RouteComponentProps {}
 
 export interface MovieState {
@@ -67,64 +63,64 @@ export interface CastsState {
   name: string;
 }
 
-
-
-
 export interface GridCardsProps {
-    image: string;
-    name: string;
-  }
-  
+  image: string;
+  name: string;
+}
 
-  export interface CommentsProps {
-    movieTitle: string;
-    commentLists: any;
-    postId: string;
-    refreshFunction: Function;
-  }
-  
-  export interface CommentsInterface {
-    user: {
-      loginSuccess: string;
-    };
-  }
-  
+export interface CommentsProps {
+  movieTitle: string;
+  commentLists: any;
+  postId: string;
+  refreshFunction: Function;
+}
 
-  export interface MovieInfoProps {
-    movie: {
-      original_title: string;
-      release_date: number;
-      revenue: number;
-      runtime: number;
-      vote_average: number;
-      vote_count: number;
-    }
-  }
+export interface CommentsInterface {
+  user: {
+    loginSuccess: string;
+  };
+}
 
-  export interface LikeDislikesProps {
-    ID: string;
-    type: string;
-  }
-  
-  export interface LikeDislikesInterace {
-    user: {
-      loginSuccess: boolean;
-    };
-  }
-  
+export interface MovieInfoProps {
+  movie: {
+    original_title: string;
+    release_date: number;
+    revenue: number;
+    runtime: number;
+    vote_average: number;
+    vote_count: number;
+  };
+}
 
-  export interface FavoriteProps {
-    movieID: string;
-    movieInfo: {
-      title: string;
-      poster_path: string;
-      runtime: number;
-    };
-  }
-  
-  export interface FavoriteInterace {
-    user: {
-      loginSuccess: boolean;
-    };
-  }
-  
+export interface LikeDislikesProps {
+  ID: string;
+  type: string;
+}
+
+export interface LikeDislikesInterace {
+  user: {
+    loginSuccess: boolean;
+  };
+}
+
+export interface FavoriteProps {
+  movieID: string;
+  movieInfo: {
+    title: string;
+    poster_path: string;
+    runtime: number;
+  };
+}
+
+export interface FavoriteInterace {
+  user: {
+    loginSuccess: boolean;
+  };
+}
+
+export interface FavoritesState {
+  moviePoster: string;
+  movieID: string;
+  movieTitle: string;
+  movieRunTime: number;
+}

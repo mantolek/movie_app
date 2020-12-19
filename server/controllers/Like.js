@@ -62,7 +62,7 @@ exports.upLike = async (req, res) => {
   } else {
     variable = { commentID: req.body.commentID, userID: req.user._id };
   }
-  console.log(req.body)
+
   try {
     const like = await new Like(variable);
     if (!like)

@@ -76,7 +76,7 @@ export const setLikeCall = async (url: string, ID: string, type: string) => {
   } else {
     variables.commentID = ID
   }
-console.log(variables)
+
   const { data } = await axios.post(
     `${LIKE_SERVER}/${url}`,
     { ...variables },

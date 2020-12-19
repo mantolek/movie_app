@@ -6,13 +6,13 @@ import {
   CastsState,
 } from '../../types/interfaces/index';
 import { IMAGE_BASE_URL, IMAGE_SIZE } from '../../config/index';
-
 import MainImage from './Components/MainImage';
 import Comments from './Components/Comments';
 import LikeDislikes from './Components/LikeDislikes';
 import GridCards from './Components/GridCards';
 import MovieInfo from './Components/MovieInfo';
 import Favorite from './Components/Favorite';
+import { useHistory } from "react-router-dom";
 
 const Movie: React.FC<MovieDetailPageProps> = (props) => {
   const [movie, setMovie] = useState<MovieState | any>([]);
@@ -21,6 +21,7 @@ const Movie: React.FC<MovieDetailPageProps> = (props) => {
   const [loadingMovie, setLoadingMovie] = useState(true);
   const [loadingCasts, setLoadingCasts] = useState(true);
   const [actorToggle, setActorToggle] = useState(false);
+  let history = useHistory();
 
   const { id }: any = props.match.params;
 
@@ -32,7 +33,7 @@ const Movie: React.FC<MovieDetailPageProps> = (props) => {
       setMovie(data);
       setLoadingMovie(false);
     } catch (err) {
-      console.log(err.response.data.err || err.message);
+      console.log(EvalError);
     }
 
     // GET MOVIE ACTORS
@@ -43,7 +44,7 @@ const Movie: React.FC<MovieDetailPageProps> = (props) => {
       setCasts(cast);
       setLoadingCasts(false);
     } catch (err) {
-      console.log(err.response.data.err || err.message);
+      console.log(err);
     }
   }, [id]);
 
@@ -55,7 +56,7 @@ const Movie: React.FC<MovieDetailPageProps> = (props) => {
       const data = await setCommentCall('getComments', variable);
       setCommentLists(data.comments);
     } catch (err) {
-      console.log(err.response.data.err || err.message);
+      console.log(err);
     }
   }, [id]);
 
@@ -74,6 +75,7 @@ const Movie: React.FC<MovieDetailPageProps> = (props) => {
 
   return (
     <div className='movie'>
+       <button className='btn' onClick={() => history.goBack()}>Go back</button> 
       {loadingMovie ? (
         <p>loading</p>
       ) : (

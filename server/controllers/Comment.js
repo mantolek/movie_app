@@ -53,8 +53,6 @@ exports.getComments = async (req, res) => {
       'author'
     );
 
-    console.log(comments)
-
     return res.status(200).json({ success: true, comments: populated });
   } catch (err) {
     return res.status(400).json({ msg: err.message });

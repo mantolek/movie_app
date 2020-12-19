@@ -1,0 +1,28 @@
+.favorite {
+    &__title {
+        text-align: center;
+        margin: 1rem;
+        font-size: 1.3rem;
+    }
+
+    &__wrapper {
+        display: flex;
+        flex-wrap: wrap;
+
+        .fav__block {
+            margin: 1rem;
+        }
+
+        .fav__content {
+            img {
+                max-width: 10rem;
+            }
+        }
+        .fav__runtime {
+            
+        }
+        .fav__delete {
+            
+        }
+    }
+}
