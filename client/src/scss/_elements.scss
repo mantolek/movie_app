@@ -1,0 +1,31 @@
+.btn, .btn2 {
+    background-color: #141619;
+    align-items: center;
+    font-weight: 500;
+    padding: 0 .5rem;
+    height: 1.9rem;
+    line-height: 1.9rem;
+    color: #7b8087;
+    border: .1rem solid #2f2f32;
+    white-space: nowrap;
+    cursor: pointer;
+    border-radius: .2rem;
+
+    &:hover {
+        color: #fff;
+    }
+
+    &:disabled {
+        opacity: .5;
+        text-decoration: line-through;
+    }
+
+    &:disabled:hover {
+        color: #7b8087;
+        cursor: default;
+    }
+}
+
+.btn2 {
+    background-color: #241C3C;
+}

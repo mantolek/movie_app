@@ -4,7 +4,7 @@ const initialState = {
   success: false,
   loginSuccess: false,
   email: '',
-  name: '555',
+  name: '',
   role: '',
   isAdmin: '',
   id: '',

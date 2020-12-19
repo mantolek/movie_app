@@ -3,7 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './App.scss';
 import { Appstate, AppProp } from './types/interfaces/index';
-import Home from './pages/Home'
+import Home from './pages/Home/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import { auth } from './store/actions/user_actions'

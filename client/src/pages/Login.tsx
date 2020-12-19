@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../store/actions/user_actions';
 import { LoginProp } from '../types/interfaces/index';
-import { useRemember } from '../utils/rememberUser';
+import { useRemember } from '../utils/useRemember';
 
 const Login: React.FC<LoginProp> = (props) => {
   const dispatch = useDispatch();
