@@ -5,10 +5,11 @@ const User = require('../models/User');
  * GET
  */
 exports.auth = (req, res) => {
+  console.log(5)
   res.status(200).json({
     _id: req.user._id,
     isAdmin: req.user.role !== 0,
-    success: true,
+    loginSuccess: true,
     email: req.user.email,
     name: req.user.name,
     lastname: req.user.lastname,
@@ -73,7 +74,7 @@ exports.login = async (req, res) => {
 
     return res
       .status(200)
-      .send({ success: true, token: user.token, id: user._id });
+      .send({ loginSuccess: true, token: user.token, id: user._id });
   } catch (err) {
     return res.status(400).json({ msg: err.message });
   }
@@ -100,7 +101,7 @@ exports.logout = async (req, res) => {
     if (!updated) return res.status(400).json({ msg: 'Cannot logout' });
 
     // Logged out
-    res.status(200).send({ success: false });
+    res.status(200).send({ loginSuccess: false });
   } catch (err) {
     return res.status(400).json({ msg: err.message });
   }

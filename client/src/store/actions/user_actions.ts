@@ -1,10 +1,54 @@
-import { REGISTER_USER } from '../../store/actions/types';
+import axios from 'axios';
+import { USER_SERVER } from '../../config/index';
+import {
+  REGISTER_USER,
+  AUTH_USER,
+  LOGIN_USER,
+} from '../../store/actions/types';
 
-export const registerUser = (dataToSubmit: any) => async (dispatch: Function) => {
+export const register = (dataToSubmit: any) => async (dispatch: Function) => {
+  try {
+    const request = await axios.post(`${USER_SERVER}/register`, dataToSubmit);
 
-  
     dispatch({
       type: REGISTER_USER,
-      payload: '',
+      payload: request.data,
     });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const login = (data: any) => async (dispatch: Function) => {
+  try {
+    const request = await axios.post(`${USER_SERVER}/login`, data);
+    localStorage.setItem('userLoggedIn', request.data.token);
+
+    dispatch({
+      type: LOGIN_USER,
+      payload: request.data,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const auth = () => async (dispatch: Function) => {
+  const token = localStorage.getItem('userLoggedIn');
+  const config = {
+    headers: {
+      'Content-type': 'application/json',
+      'x-auth-token': token || '',
+    },
   };
+
+  try {
+    const request = await axios.get(`${USER_SERVER}/auth`, config);
+    dispatch({
+      type: AUTH_USER,
+      payload: request.data,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
