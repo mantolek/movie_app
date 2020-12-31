@@ -47,7 +47,7 @@ exports.getComments = async (req, res) => {
     if (!comments)
       return res
         .status(400)
-        .json({ msg: 'Something went wrong with favorite.' });
+        .json({ msg: 'Something went wrong with comment.' });
 
     const populated = await Comment.find({ postID: movieID }).populate(
       'author'

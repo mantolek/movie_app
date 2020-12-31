@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import './App.scss';
 import { AppProp } from './types/interfaces/index';
@@ -9,25 +9,9 @@ import Register from './pages/Register/Register';
 import Navbar from './pages/Navbar/Navbar';
 import Movie from './pages/Movie/Movie';
 import Favorite from './pages/Favorite/Favorite';
+import Admin from './pages/Admin/Admin';
 import { auth } from './store/actions/user_actions';
-
-const PrivateRoute = ({ component: Component, ...rest }: any) => (
-  <Route
-    {...rest}
-    render={(props) =>
-      localStorage.getItem('userLoggedIn') ? (
-        <Component {...props} />
-      ) : (
-        <Redirect
-          to={{
-            pathname: '/login',
-            state: { from: props.location },
-          }}
-        />
-      )
-    }
-  />
-);
+import { AdminRoute, PrivateRoute } from './utils/routes'
 
 const App: React.FC<AppProp> = () => {
   const dispatch = useDispatch();
@@ -40,6 +24,7 @@ const App: React.FC<AppProp> = () => {
     <div>
       <Navbar />
       <Switch>
+        <AdminRoute exact path='/admin' component={Admin} />
         <PrivateRoute exact path='/' component={Home} />
         <Route exact path='/login' component={Login} />
         <Route exact path='/register' component={Register} />
