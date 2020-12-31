@@ -1,13 +1,15 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { AiOutlineLike, AiOutlineDislike } from 'react-icons/ai';
 import { setLikeCall } from '../../../utils/calls';
 import {
   LikeDislikesProps,
   LikeDislikesInterace,
 } from '../../../types/interfaces/index';
+import { changePopup } from '../../../store/actions/global_actions';
 
 const LikeDislikes: React.FC<LikeDislikesProps> = ({ ID, type }) => {
+  const dispatch = useDispatch();
   const user = useSelector((state: LikeDislikesInterace) => state.user);
 
   const [likes, setLikes] = useState(0);
@@ -34,9 +36,9 @@ const LikeDislikes: React.FC<LikeDislikesProps> = ({ ID, type }) => {
           : like.movieID === myLike && setLikeAction(true)
       );
     } catch (err) {
-      console.log(err);
+      dispatch(changePopup(true, 'fetch'));
     }
-  }, [ID, type]);
+  }, [ID, type, dispatch]);
 
   const getDisLikes = useCallback(async () => {
     try {
@@ -47,12 +49,12 @@ const LikeDislikes: React.FC<LikeDislikesProps> = ({ ID, type }) => {
       const myDislike = localStorage.getItem(`${ID}-dislike`);
       // if disliked before set dislike action to true
       data.dislikes.map((dislike: likeAndDislike) =>
-      type === 'comment'
-        ? dislike.commentID === myDislike && setDislikeAction(true)
-        : dislike.movieID === myDislike && setDislikeAction(true)
-    );
+        type === 'comment'
+          ? dislike.commentID === myDislike && setDislikeAction(true)
+          : dislike.movieID === myDislike && setDislikeAction(true)
+      );
     } catch (err) {
-      console.log(err);
+      dispatch(changePopup(true, 'fetch'));
     }
   }, [ID, type]);
 
@@ -64,7 +66,7 @@ const LikeDislikes: React.FC<LikeDislikesProps> = ({ ID, type }) => {
   // ON LIKE
   const onLike = async () => {
     if (!user.loginSuccess) {
-      console.log('login error');
+      dispatch(changePopup(true, 'login'));
     }
 
     if (!likeAction) {
@@ -84,7 +86,7 @@ const LikeDislikes: React.FC<LikeDislikesProps> = ({ ID, type }) => {
           }
         }
       } catch (err) {
-        console.log(err);
+        dispatch(changePopup(true, 'fetch'));
       }
     } else {
       // if liked before; dislike
@@ -96,14 +98,14 @@ const LikeDislikes: React.FC<LikeDislikesProps> = ({ ID, type }) => {
           localStorage.removeItem(`${ID}-like`);
         }
       } catch (err) {
-        console.log(err);
+        dispatch(changePopup(true, 'fetch'));
       }
     }
   };
 
   const onDisLike = async () => {
     if (!user.loginSuccess) {
-      console.log('login error');
+      dispatch(changePopup(true, 'login'));
     }
 
     if (!dislikeAction) {
@@ -123,7 +125,7 @@ const LikeDislikes: React.FC<LikeDislikesProps> = ({ ID, type }) => {
           }
         }
       } catch (err) {
-        console.log(err);
+        dispatch(changePopup(true, 'fetch'));
       }
     } else {
       // if disliked before; reset
@@ -136,7 +138,7 @@ const LikeDislikes: React.FC<LikeDislikesProps> = ({ ID, type }) => {
           localStorage.removeItem(`${ID}-dislike`);
         }
       } catch (err) {
-        console.log(err);
+        dispatch(changePopup(true, 'fetch'));
       }
     }
   };

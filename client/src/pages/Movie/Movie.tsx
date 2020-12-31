@@ -13,8 +13,11 @@ import GridCards from './Components/GridCards';
 import MovieInfo from './Components/MovieInfo';
 import Favorite from './Components/Favorite';
 import { useHistory } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { changePopup } from '../../store/actions/global_actions'
 
 const Movie: React.FC<MovieDetailPageProps> = (props) => {
+  const dispatch = useDispatch();
   const [movie, setMovie] = useState<MovieState | any>([]);
   const [casts, setCasts] = useState<CastsState[]>([]);
   const [commentLists, setCommentLists] = useState([]);
@@ -33,7 +36,7 @@ const Movie: React.FC<MovieDetailPageProps> = (props) => {
       setMovie(data);
       setLoadingMovie(false);
     } catch (err) {
-      console.log(EvalError);
+      dispatch(changePopup(true, 'fetch'))
     }
 
     // GET MOVIE ACTORS
@@ -44,9 +47,9 @@ const Movie: React.FC<MovieDetailPageProps> = (props) => {
       setCasts(cast);
       setLoadingCasts(false);
     } catch (err) {
-      console.log(err);
+      dispatch(changePopup(true, 'fetch'))
     }
-  }, [id]);
+  }, [id, dispatch]);
 
   const getComments = useCallback(async () => {
     try {
@@ -56,9 +59,9 @@ const Movie: React.FC<MovieDetailPageProps> = (props) => {
       const data = await setCommentCall('getComments', variable);
       setCommentLists(data.comments);
     } catch (err) {
-      console.log(err);
+      dispatch(changePopup(true, 'fetch'))
     }
-  }, [id]);
+  }, [id, dispatch]);
 
   useEffect(() => {
     getMovieInfo();

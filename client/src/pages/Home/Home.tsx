@@ -7,8 +7,11 @@ import {
 } from '../../types/interfaces/index';
 import { IMAGE_BASE_URL, IMAGE_SIZE, POSTER_SIZE } from '../../config/index';
 import { setMoviesCall } from '../../utils/calls';
+import { useDispatch } from 'react-redux';
+import { changePopup } from '../../store/actions/global_actions'
 
 const Home: React.FC = () => {
+  const dispatch = useDispatch();
   const [movies, setMovies] = useState<HomeMovieInterface[]>([]);
   const [
     mainMovieImage,
@@ -28,10 +31,10 @@ const Home: React.FC = () => {
         setCurrentPage(data.page);
         setLoading(false);
       } catch (err) {
-        console.log(err);
+        dispatch(changePopup(true, 'fetch'))
       }
     },
-    [mainMovieImage]
+    [mainMovieImage, dispatch]
   );
 
   useEffect(() => {

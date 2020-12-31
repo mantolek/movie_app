@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { setCommentCall } from '../../../utils/calls';
 import {
   CommentsProps,
   CommentsInterface,
 } from '../../../types/interfaces/index';
 import LikeDislikes from './LikeDislikes'
+import { changePopup } from '../../../store/actions/global_actions'
 
 const Comments: React.FC<CommentsProps> = ({
   movieTitle,
@@ -13,6 +14,7 @@ const Comments: React.FC<CommentsProps> = ({
   postId,
   refreshFunction,
 }) => {
+  const dispatch = useDispatch();
   const user = useSelector((state: CommentsInterface) => state.user);
   const [comment, setComment] = useState('');
 
@@ -26,7 +28,7 @@ const Comments: React.FC<CommentsProps> = ({
     e.preventDefault();
 
     if (!user.loginSuccess) {
-      console.log('error login');
+      dispatch(changePopup(true, 'login'))
     }
 
     const variables = {
@@ -41,7 +43,7 @@ const Comments: React.FC<CommentsProps> = ({
         refreshFunction(data.result);
       }
     } catch (err) {
-      console.log(err);
+      dispatch(changePopup(true, 'fetch'))
     }
   };
   return (

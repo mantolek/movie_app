@@ -3,8 +3,11 @@ import { setFavoriteCall } from '../../utils/calls';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config/index';
 import { FavoritesState } from '../../types/interfaces/index';
 import { useHistory } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { changePopup } from '../../store/actions/global_actions'
 
 const Favorite: React.FC = () => {
+  const dispatch = useDispatch();
   const [favorites, setFavorites] = useState<FavoritesState[]>([]);
   const [loading, setLoading] = useState(true);
   let history = useHistory();
@@ -17,9 +20,9 @@ const Favorite: React.FC = () => {
         setLoading(false);
       }
     } catch (err) {
-      console.log(err);
+      dispatch(changePopup(true, 'fetch'))
     }
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     getFavoriteMovies();

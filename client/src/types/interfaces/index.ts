@@ -13,6 +13,14 @@ export interface AppProp {
   //   auth: Function;
 }
 
+export interface Globalstate {
+  global: {
+    mode: boolean | null;
+    popup: boolean;
+    popupErrorType: string;
+  };
+}
+
 export interface RegisterProp {
   history: {
     push: Function;

@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../../store/actions/user_actions';
 import { MenuMobileProps, Appstate } from '../../../types/interfaces/index';
+import { changePopup } from '../../../store/actions/global_actions'
 
 const MenuMobile: React.FC<MenuMobileProps> = (props) => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const MenuMobile: React.FC<MenuMobileProps> = (props) => {
       await dispatch(logout());
       props.history.push('/login');
     } catch (err) {
-      console.log(err);
+      dispatch(changePopup(true, 'login'))
     }
   };
 

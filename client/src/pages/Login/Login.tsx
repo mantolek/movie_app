@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import { login } from '../../store/actions/user_actions';
 import { LoginProp } from '../../types/interfaces/index';
 import { useRemember } from '../../utils/useRemember';
+import { changePopup } from '../../store/actions/global_actions'
+import { validate } from '../../utils/validation';
 
 const Login: React.FC<LoginProp> = (props) => {
   const dispatch = useDispatch();
@@ -24,6 +26,11 @@ const Login: React.FC<LoginProp> = (props) => {
   ) => {
     e.preventDefault();
 
+    if (!validate(formData)) {
+      dispatch(changePopup(true, 'validate'));
+      return;
+    }
+
     try {
       await dispatch(login(formData));
 
@@ -36,7 +43,7 @@ const Login: React.FC<LoginProp> = (props) => {
       setFormData({ email: '', password: '' });
       props.history.push('/');
     } catch (err) {
-      console.log(err);
+      dispatch(changePopup(true, 'login'))
     }
   };
 

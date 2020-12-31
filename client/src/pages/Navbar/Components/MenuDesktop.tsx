@@ -2,8 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { logout } from '../../../store/actions/user_actions';
-
 import { MenuDesktopProps, Appstate } from '../../../types/interfaces/index';
+import { changePopup } from '../../../store/actions/global_actions'
 
 const MenuDesktop: React.FC<MenuDesktopProps> = (props) => {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ const MenuDesktop: React.FC<MenuDesktopProps> = (props) => {
       await dispatch(logout());
       props.history.push('/login');
     } catch (err) {
-      console.log(err)
+      dispatch(changePopup(true, 'login'))
     }
   };
 

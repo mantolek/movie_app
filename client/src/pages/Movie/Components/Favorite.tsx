@@ -1,33 +1,35 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import { setFavoriteCall } from '../../../utils/calls';
 import {
   FavoriteProps,
   FavoriteInterace,
 } from '../../../types/interfaces/index';
+import { changePopup } from '../../../store/actions/global_actions'
 
 const Favorite: React.FC<FavoriteProps> = ({ movieID, movieInfo }) => {
+  const dispatch = useDispatch();
   const user = useSelector((state: FavoriteInterace) => state.user);
 
   const [favorited, setFavorited] = useState(false);
 
   const onClickFavorite = async () => {
     if (!user.loginSuccess) {
-     console.log('login error')
+      dispatch(changePopup(true, 'login'));
     }
 
     if (favorited) {
       // when we are already subscribed
       try {
         const dataRemove = await setFavoriteCall('removeFromFavorite', {
-            movieID,
+          movieID,
         });
         if (dataRemove.success) {
           setFavorited(!favorited);
         }
       } catch (err) {
-        console.log(err);
+        dispatch(changePopup(true, 'fetch'));
       }
     } else {
       // when we are not subscribed yet
@@ -44,7 +46,7 @@ const Favorite: React.FC<FavoriteProps> = ({ movieID, movieInfo }) => {
           setFavorited(!favorited);
         }
       } catch (err) {
-        console.log(err);
+        dispatch(changePopup(true, 'fetch'));
       }
     }
   };
@@ -56,7 +58,7 @@ const Favorite: React.FC<FavoriteProps> = ({ movieID, movieInfo }) => {
         setFavorited(data.success);
       }
     } catch (err) {
-        console.log(err);
+      dispatch(changePopup(true, 'fetch'));
     }
   }, [movieID]);
 
@@ -66,10 +68,15 @@ const Favorite: React.FC<FavoriteProps> = ({ movieID, movieInfo }) => {
 
   return (
     <div className='favoriteBtn'>
-      {!favorited ?
-        <>Add to Favorite <MdFavoriteBorder onClick={onClickFavorite} /></>
-        :
-        <>Delete from Favorite <MdFavorite onClick={onClickFavorite} /></>}
+      {!favorited ? (
+        <>
+          Add to Favorite <MdFavoriteBorder onClick={onClickFavorite} />
+        </>
+      ) : (
+        <>
+          Delete from Favorite <MdFavorite onClick={onClickFavorite} />
+        </>
+      )}
     </div>
   );
 };

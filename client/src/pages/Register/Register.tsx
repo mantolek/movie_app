@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { register } from '../../store/actions/user_actions';
 import { RegisterProp } from '../../types/interfaces/index';
+import { changePopup } from '../../store/actions/global_actions';
+import { validate } from '../../utils/validation';
 
 const Register: React.FC<RegisterProp> = (props) => {
   const dispatch = useDispatch();
@@ -23,6 +25,11 @@ const Register: React.FC<RegisterProp> = (props) => {
   ) => {
     e.preventDefault();
 
+    if (!validate(formData)) {
+      dispatch(changePopup(true, 'validate'));
+      return;
+    }
+
     try {
       await dispatch(register(formData));
 
@@ -36,7 +43,7 @@ const Register: React.FC<RegisterProp> = (props) => {
 
       props.history.push('/login');
     } catch (err) {
-      console.log(err);
+      dispatch(changePopup(true, 'register'));
     }
   };
 
