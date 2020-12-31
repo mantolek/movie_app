@@ -6,8 +6,6 @@ const initialState = {
   email: '',
   name: '',
   role: '',
-  isAdmin: '',
-  id: '',
   token: '',
 };
 
@@ -15,7 +13,7 @@ export default function user_reducer(state = initialState, action: any) {
   const { payload } = action;
   switch (action.type) {
     case REGISTER_USER:
-      return { ...state, register: payload };
+      return { ...state, success: payload };
     case LOGIN_USER:
       return { ...state, ...payload };
     case AUTH_USER:
@@ -25,8 +23,6 @@ export default function user_reducer(state = initialState, action: any) {
         email: payload.email,
         name: payload.name,
         role: payload.role,
-        isAdmin: payload.isAdmin,
-        id: payload._id,
       };
     case LOGOUT_USER:
       return { ...state, loginSuccess: payload.loginSuccess };

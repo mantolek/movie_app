@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import React from 'react';
-import { Appstate } from '../types/interfaces/index';
 
 export const PrivateRoute = ({ component: Component, ...rest }: any) => (
   <Route
@@ -21,12 +20,18 @@ export const PrivateRoute = ({ component: Component, ...rest }: any) => (
   />
 );
 
+interface role {
+  user: {
+    role: number
+  }
+}
+
 export const AdminRoute = ({ component: Component, ...rest }: any) => {
-  const user = useSelector((state: Appstate) => state.user);
+  const user = useSelector((state: role) => state.user);
   return (
     <Route
       {...rest}
-      render={(props) => (user.isAdmin ? <Component {...props} /> : null)}
+      render={(props) => (user.role === 1 ? <Component {...props} /> : null)}
     />
   );
 };

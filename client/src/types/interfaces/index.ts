@@ -6,18 +6,11 @@ export interface Appstate {
   user: {
     loginSuccess: boolean;
     auth: boolean;
-    isAdmin: boolean;
   };
 }
 
 export interface AppProp {
   //   auth: Function;
-}
-
-export interface Globalstate {
-  global: {
-    mode: boolean;
-  };
 }
 
 export interface RegisterProp {

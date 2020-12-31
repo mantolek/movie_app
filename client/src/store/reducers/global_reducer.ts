@@ -1,7 +1,7 @@
 import { CHANGE_MODE } from '../actions/types';
 
 const initialState = {
-  mode: true
+  mode: null
 };
 
 export default function user_reducer(state = initialState, action: any) {

@@ -62,7 +62,7 @@ export const logout = () => async (dispatch: Function) => {
       'x-auth-token': token || '',
     },
   };
-  console.log(config);
+
   const request = await axios.get(`${USER_SERVER}/logout`, config);
 
   localStorage.removeItem('userLoggedIn');

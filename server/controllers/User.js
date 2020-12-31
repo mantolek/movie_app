@@ -6,8 +6,6 @@ const User = require('../models/User');
  */
 exports.auth = (req, res) => {
   res.status(200).json({
-    _id: req.user._id,
-    isAdmin: req.user.role !== 0,
     loginSuccess: true,
     email: req.user.email,
     name: req.user.name,
@@ -79,7 +77,7 @@ exports.login = async (req, res) => {
   }
 
   /*
-   * *** UNDEFEATABLE CROS ERROR :D
+   * *** UNDEFEATABLE CROS ERROR
    * res.cookie("w_auth", user.token).status(200).json({
    *         loginSuccess: true, userId: user._id
    * });
